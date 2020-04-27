@@ -41,7 +41,6 @@ class Books():
             return False
 
     def storeBooksForGenre(self,genre,listOfBooks):
-        print(listOfBooks)
         if not self.checkIfGenreLoaded(genre):
             self.listOfBooks[genre] = listOfBooks
 
