@@ -26,6 +26,7 @@ class TestBooks(unittest.TestCase):
         loadFromFile = BooksFromFile()
         self.books.setLoadBookFile(loadFromFile)
         self.books.populateGenres()
+        self.books.loadBookFile.getListOfGenres = MagicMock(return_value=['Action','Thriller'])
         request = self.books.requestListOfGenre()
         self.assertEqual(request,"Select 0 for Action 1 for Romance 2 for Thriller enter 3 to exit.")
 
