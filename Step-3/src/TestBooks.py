@@ -2,6 +2,7 @@ import unittest
 from Books import Books
 from BooksFromStub import BooksFromStub
 from BooksFromFile import BooksFromFile
+from unittest.mock import MagicMock
 
 class TestBooks(unittest.TestCase):
 
@@ -18,9 +19,15 @@ class TestBooks(unittest.TestCase):
         loadFromStub = BooksFromStub()
         self.books.setLoadBookFile(loadFromStub)
         self.books.populateGenres()
-        self.books.loadBookFile.getListOfGenres = MagicMock(return_value=['Action','Thriller'])
         request = self.books.requestListOfGenre()
-        self.assertEqual(request,"Select 0 for Action 1 for Thriller enter 2 to exit.")
+        self.assertEqual(request,"Select 0 for Action 1 for Romance enter 2 to exit.")
+
+    def test_RequestListOfGenreMock(self):
+        loadFromFile = BooksFromFile()
+        self.books.setLoadBookFile(loadFromFile)
+        self.books.populateGenres()
+        request = self.books.requestListOfGenre()
+        self.assertEqual(request,"Select 0 for Action 1 for Romance 2 for Thriller enter 3 to exit.")
 
 def main():
     unittest.main()
